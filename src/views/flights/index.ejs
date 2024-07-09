@@ -1,0 +1,63 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12 text-center">
+            <h1 class="fw-bold">Vuelos</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Agregar Vuelo</h2>
+            <form action="/flights" method="POST" id="addFlightForm">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Ingrese el nombre del vuelo" required>
+                    <label for="name" class="form-label">Nombre del Vuelo</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="origin" name="origin" placeholder="Ingrese el origen del vuelo" required>
+                    <label for="origin" class="form-label">Origen</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="destination" name="destination" placeholder="Ingrese el destino del vuelo" required>
+                    <label for="destination" class="form-label">Destino</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="datetime-local" class="form-control" id="departureTime" name="departureTime" required>
+                    <label for="departureTime" class="form-label">Hora de Salida</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="datetime-local" class="form-control" id="arrivalTime" name="arrivalTime" required>
+                    <label for="arrivalTime" class="form-label">Hora de Llegada</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="number" class="form-control" id="price" name="price" placeholder="Ingrese el precio del vuelo" required>
+                    <label for="price" class="form-label">Precio</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <select class="form-select" id="categoryId" name="categoryId" required>
+                        <% categories.forEach(category => { %>
+                            <option value="<%= category.id %>"><%= category.name %></option>
+                        <% }); %>
+                    </select>
+                    <label for="categoryId" class="form-label">Categoría</label>
+                </div>
+                <button type="submit" class="btn btn-dark">Agregar Vuelo</button>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <h2>Todos los Vuelos</h2>
+            <ul class="list-group">
+                <% flights.forEach(flight => { %>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <%= flight.name %> - <%= flight.origin %> a <%= flight.destination %> - Precio: $<%= flight.price %>
+                        <div>
+                            <a href="/flights/edit/<%= flight.id %>" class="btn btn-primary btn-sm me-2">Editar</a>
+                            <!-- Agrega SweetAlert al botón de Eliminar -->
+                            <button type="button" class="btn btn-danger btn-sm delete-flight-button" data-flight-id="<%= flight.id %>">Eliminar</button>
+                        </div>
+                    </li>
+                <% }); %>
+            </ul>
+        </div>
+    </div>
+</div>
+<hr class="my-4">

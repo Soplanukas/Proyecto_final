@@ -1,0 +1,53 @@
+<div class="row">
+    <div class="col-12 text-center">
+        <h1 class="fw-bold">Inicio</h1>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-12 text-center">
+        <form action="/buscar" method="GET">
+            <input type="text" name="search" class="form-control" placeholder="Buscar vuelos por nombre">
+            <button type="submit" class="btn btn-dark mt-2">Buscar 🔍</button>
+        </form>
+    </div>
+</div>
+
+<hr class="my-4">
+
+<div class="row mt-4">
+    <% categories.forEach(category => { %>
+        <div class="col-12 text-center">
+            <h3 class="fw-bold"><%= category.name %></h3>
+        </div>
+        <hr class="my-4">
+        <% category.flights.forEach(flight => { %>
+            <div class="col-md-4 mb-4">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-header fw-bold">
+                        <%= flight.name %>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Origen: <%= flight.origin %></li>
+                        <li class="list-group-item">Destino: <%= flight.destination %></li>
+                        <li class="list-group-item">Hora de salida: <%= new Date(flight.departuretime).toLocaleString() %></li>
+                        <li class="list-group-item">Hora de llegada: <%= new Date(flight.arrivaltime).toLocaleString() %></li>
+                        <li class="list-group-item">Precio: <%= flight.price %></li>
+                    </ul>
+                </div>
+            </div>
+        <% }); %>
+        <div class="col-12">
+            <hr class="my-4">
+        </div>
+    <% }); %>
+</div>
+
+<div class="row mt-4">
+    <div class="col-12 text-center">
+        <a href="/categories" class="btn btn-dark">Agregar Categoría</a>
+        <a href="/flights" class="btn btn-dark">Agregar Vuelo</a>
+    </div>
+</div>
+<br/>
+<br/>

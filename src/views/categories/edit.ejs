@@ -1,0 +1,17 @@
+<!-- views/categories/edit.ejs -->
+<div class="row">
+    <div class="col-12 text-center">
+        <h1 class="fw-bold">Editar Categoría</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <form action="/categories/edit/<%= category.id %>" method="POST">
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="name" name="name" value="<%= category.name %>" required>
+                <label for="name" class="form-label">Nombre de la Categoría</label>
+            </div>
+            <button type="submit" class="btn btn-dark">Actualizar Categoría</button>
+        </form>
+    </div>
+</div>
